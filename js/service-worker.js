@@ -1,13 +1,13 @@
 const CACHE_NAME = 'shopping-list-cache-v2';
 
 const FILES_TO_CACHE = [
-  '/',
-  '/index.html',
-  '/offline.html',
-  '/css/styles.css',
-  '/js/app.js',
-  '/js/idb.js',
-  '/manifest.json'
+  '/Shopping_list/',
+  '/Shopping_list/index.html',
+  '/Shopping_list/offline.html',
+  '/Shopping_list/css/styles.css',
+  '/Shopping_list/js/app.js',
+  '/Shopping_list/js/idb.js',
+  '/Shopping_list/manifest.json'
 ];
 
 const API_URL = 'https://api.openweathermap.org/data/2.5/weather';
