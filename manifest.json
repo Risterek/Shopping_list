@@ -4,5 +4,7 @@
   "start_url": ".",
   "display": "standalone",
   "background_color": "#007acc",
-  "theme_color": "#007acc"
+  "theme_color": "#007acc",
+  "description": "Prosta aplikacja PWA do zarządzania listą zakupów z integracją pogody",
+  "lang": "pl-PL"
 }
