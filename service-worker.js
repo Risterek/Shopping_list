@@ -10,8 +10,6 @@ const FILES_TO_CACHE = [
   './manifest.json'
 ];
 
-
-// Adres API pogodowego
 const API_URL = 'https://api.openweathermap.org/data/2.5/weather';
 
 self.addEventListener('install', evt => {
@@ -45,7 +43,6 @@ self.addEventListener('activate', evt => {
 self.addEventListener('fetch', evt => {
   const requestUrl = new URL(evt.request.url);
 
-  // Obsługa zapytań do OpenWeather API
   if (evt.request.url.startsWith(API_URL)) {
     evt.respondWith(
       caches.open(CACHE_NAME).then(cache =>
@@ -60,7 +57,6 @@ self.addEventListener('fetch', evt => {
     return;
   }
 
-  // Obsługa nawigacji (np. wpisywanie URL w pasku adresu)
   if (evt.request.mode === 'navigate') {
     evt.respondWith(
       fetch(evt.request).catch(() => caches.match('./offline.html'))
@@ -68,7 +64,6 @@ self.addEventListener('fetch', evt => {
     return;
   }
 
-  // Obsługa pozostałych zasobów (CSS, JS, HTML, manifest)
   evt.respondWith(
     caches.match(evt.request).then(response => {
       return response || fetch(evt.request);
