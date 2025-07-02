@@ -70,3 +70,13 @@ self.addEventListener('fetch', evt => {
     })
   );
 });
+
+console.log('Service Worker instalowany...');
+self.addEventListener('install', evt => {
+  console.log('Caching:', FILES_TO_CACHE);
+  ...
+});
+
+self.addEventListener('fetch', evt => {
+  console.log('Fetch request:', evt.request.url);
+});
