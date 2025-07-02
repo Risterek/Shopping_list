@@ -1,6 +1,7 @@
 const DB_NAME = 'shopping-list-db';
-const DB_VERSION = 1;
+const DB_VERSION = 2; // podbita wersja do 2 dla weather store
 const STORE_NAME = 'products';
+const WEATHER_STORE = 'weather';
 
 function openDB() {
   return new Promise((resolve, reject) => {
@@ -13,6 +14,9 @@ function openDB() {
       const db = event.target.result;
       if (!db.objectStoreNames.contains(STORE_NAME)) {
         db.createObjectStore(STORE_NAME, { keyPath: 'id', autoIncrement: true });
+      }
+      if (!db.objectStoreNames.contains(WEATHER_STORE)) {
+        db.createObjectStore(WEATHER_STORE, { keyPath: 'id' });
       }
     };
   });
@@ -50,6 +54,28 @@ async function deleteProduct(id) {
     const req = store.delete(id);
 
     req.onsuccess = () => resolve();
+    req.onerror = () => reject(req.error);
+  });
+}
+
+async function saveWeatherData(data) {
+  const db = await openDB();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(WEATHER_STORE, 'readwrite');
+    const store = tx.objectStore(WEATHER_STORE);
+    const req = store.put({ id: 1, data });
+    req.onsuccess = () => resolve();
+    req.onerror = () => reject(req.error);
+  });
+}
+
+async function getWeatherData() {
+  const db = await openDB();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(WEATHER_STORE, 'readonly');
+    const store = tx.objectStore(WEATHER_STORE);
+    const req = store.get(1);
+    req.onsuccess = () => resolve(req.result ? req.result.data : null);
     req.onerror = () => reject(req.error);
   });
 }
