@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   async function fetchWeather(city = 'Warsaw') {
-    const apiKey = 'b6907d289e10d714a6e88b30761fae22'; // klucz demo OpenWeather
+    const apiKey = 'a591bd9280c2a98409007c68fdce5b16';
     const url = `https://openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${apiKey}&units=metric&lang=pl`;
 
     try {
