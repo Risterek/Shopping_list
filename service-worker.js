@@ -63,7 +63,7 @@ self.addEventListener('fetch', evt => {
   // Obsługa nawigacji (np. wpisywanie URL w pasku adresu)
   if (evt.request.mode === 'navigate') {
     evt.respondWith(
-      fetch(evt.request).catch(() => caches.match('/Shopping_list/offline.html'))
+      fetch(evt.request).catch(() => caches.match('./offline.html'))
     );
     return;
   }
