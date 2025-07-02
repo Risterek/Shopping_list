@@ -10,7 +10,7 @@ const FILES_TO_CACHE = [
   '/manifest.json'
 ];
 
-const API_URL = 'https://openweathermap.org/data/2.5/weather';
+const API_URL = 'https://api.openweathermap.org/data/2.5/weather';
 
 self.addEventListener('install', evt => {
   evt.waitUntil(
