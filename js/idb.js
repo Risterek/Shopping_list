@@ -1,5 +1,5 @@
 const DB_NAME = 'shopping-list-db';
-const DB_VERSION = 2; // podbita wersja do 2 dla weather store
+const DB_VERSION = 2;
 const STORE_NAME = 'products';
 const WEATHER_STORE = 'weather';
 
