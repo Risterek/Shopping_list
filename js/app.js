@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
   showView('home');
 
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('js/service-worker.js')
+    navigator.serviceWorker.register('service-worker.js')
       .then(() => console.log('Service Worker zarejestrowany'))
       .catch(err => console.error('Błąd rejestracji SW:', err));
   }
