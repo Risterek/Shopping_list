@@ -1,4 +1,5 @@
-const CACHE_NAME = 'shopping-list-cache-v1';
+const CACHE_NAME = 'shopping-list-cache-v2';
+
 const FILES_TO_CACHE = [
   '/',
   '/index.html',
@@ -8,6 +9,8 @@ const FILES_TO_CACHE = [
   '/js/idb.js',
   '/manifest.json'
 ];
+
+const API_URL = 'https://openweathermap.org/data/2.5/weather';
 
 self.addEventListener('install', evt => {
   evt.waitUntil(
@@ -28,6 +31,21 @@ self.addEventListener('activate', evt => {
 });
 
 self.addEventListener('fetch', evt => {
+  if (evt.request.url.startsWith(API_URL)) {
+    // Strategia stale-while-revalidate dla API
+    evt.respondWith(
+      caches.open(CACHE_NAME).then(cache =>
+        fetch(evt.request)
+          .then(response => {
+            cache.put(evt.request, response.clone());
+            return response;
+          })
+          .catch(() => cache.match(evt.request))
+      )
+    );
+    return;
+  }
+
   if (evt.request.mode === 'navigate') {
     evt.respondWith(
       fetch(evt.request).catch(() => caches.match('/offline.html'))
