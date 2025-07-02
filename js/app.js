@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const response = await fetch(url);
       if (!response.ok) throw new Error('Błąd sieci');
       const data = await response.json();
-      await saveWeatherData(data); // zapis do IndexedDB
+      await saveWeatherData(data);
       return data;
     } catch (err) {
       console.warn('Błąd pobierania pogody, używam danych z IndexedDB:', err);
